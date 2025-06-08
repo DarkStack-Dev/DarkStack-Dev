@@ -63,8 +63,8 @@ Nosso foco é criar soluções reais, evoluir como equipe e transformar conhecim
 ## 🌐 Contato e Conexões
 
 📬 **contato@darkstack.dev**  
-📎 Em breve: [www.darkstack.dev](https://darkstack.dev)  
-📱 Siga a gente no [Instagram](https://instagram.com/sua_conta_aqui)  
+📎 Em breve: [www.darkstack.dev](https://darkstackdev.netlify.app/)  
+📱 Siga a gente no [Instagram](https://instagram.com/darkstackdev)  
 👥 Participe do grupo (sob convite)
 
 ---
