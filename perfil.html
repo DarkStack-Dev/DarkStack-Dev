@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevComunity - Meu Perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="perfil.css"> <!-- CSS específico do perfil -->
+</head>
+<body>
+    <!-- Cabeçalho fixo (topbar) -->
+    <header class="topbar">
+        <div class="topbar-container">
+            <!-- Logo -->
+            <div class="logo">
+                <h1>DevComunity</h1>
+            </div>
+            
+            <!-- Menu de navegação desktop -->
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="#foruns">Fóruns</a></li>
+                    <li><a href="#livros">Livros</a></li>
+                    <li><a href="#cursos">Cursos</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Ações do usuário -->
+            <div class="user-actions">
+                <!-- Menu hambúrguer (mobile) -->
+                <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu de navegação">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                
+                <button class="settings-btn" aria-label="Configurações">⚙️</button>
+                <div class="user-avatar">
+                    <img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 48 48\'%3E%3Ccircle cx=\'24\' cy=\'24\' r=\'24\' fill=\'%23333\'/%3E%3Ccircle cx=\'24\' cy=\'19\' r=\'7\' fill=\'%23666\'/%3E%3Cpath d=\'M8 38c0-8.837 7.163-16 16-16s16 7.163 16 16\' fill=\'%23666\'/%3E%3C/svg%3E" alt="Avatar do usuário">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu mobile -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html">🏠 Início</a></li>
+            <li><a href="#foruns">💬 Fóruns</a></li>
+            <li><a href="#livros">📚 Livros</a></li>
+            <li><a href="#cursos">🎓 Cursos</a></li>
+            <li><a href="#painel">📊 Painel</a></li>
+            <li><a href="#minhas-postagens">📝 Minhas Postagens</a></li>
+            <li><a href="perfil.html" class="active">👤 Meu Perfil</a></li>
+            <li><a href="#comunidades">👥 Comunidades</a></li>
+            <li><a href="#configuracoes">⚙️ Configurações</a></li>
+        </ul>
+    </nav>
+
+    <!-- Container principal -->
+    <div class="main-container">
+        <!-- Sidebar esquerda -->
+        <aside class="sidebar-left">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">📊 Painel</a></li>
+                    <li><a href="#minhas-postagens" class="nav-link">📝 Minhas Postagens</a></li>
+                    <li><a href="perfil.html" class="nav-link active">👤 Meu Perfil</a></li>
+                    <li><a href="#comunidades" class="nav-link">👥 Comunidades</a></li>
+                    <li><a href="#configuracoes" class="nav-link">⚙️ Configurações</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Área principal do perfil -->
+        <main class="main-content profile-page">
+            <h2 class="section-title">Meu Perfil</h2>
+
+            <!-- Seção de Visualização e Edição de Perfil -->
+            <section class="profile-section profile-overview">
+                <div class="profile-header">
+                    <div class="profile-avatar-large">
+                        <img id="profileImagePreview" src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\' viewBox=\'0 0 120 120\'%3E%3Ccircle cx=\'60\' cy=\'60\' r=\'60\' fill=\'%23333\'/%3E%3Ccircle cx=\'60\' cy=\'48\' r=\'18\' fill=\'%23666\'/%3E%3Cpath d=\'M24 96c0-26.51 21.49-48 48-48s48 21.49 48 48\' fill=\'%23666\'/%3E%3C/svg%3E" alt="Avatar do usuário">
+                        <label for="profileImageUpload" class="upload-btn" title="Alterar foto de perfil">📷</label>
+                        <input type="file" id="profileImageUpload" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="profile-info-display">
+                        <h3 id="profileNameDisplay">@nome.usuario</h3>
+                        <p id="profileBioDisplay">Desenvolvedor apaixonado por tecnologia e inovação. Foco em desenvolvimento web e mobile.</p>
+                        <p id="profileLocationDisplay">📍 São Paulo, Brasil</p>
+                    </div>
+                </div>
+                <button class="btn primary-btn" id="editProfileBtn">Editar Perfil</button>
+
+                <!-- Formulário de Edição de Perfil (oculto por padrão) -->
+                <form class="profile-edit-form" id="profileEditForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="profileName">Nome de Usuário:</label>
+                        <input type="text" id="profileName" value="nome.usuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileBio">Bio:</label>
+                        <textarea id="profileBio">Desenvolvedor apaixonado por tecnologia e inovação. Foco em desenvolvimento web e mobile.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="profileLocation">Localização:</label>
+                        <input type="text" id="profileLocation" value="São Paulo, Brasil">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary-btn">Salvar Alterações</button>
+                        <button type="button" class="btn secondary-btn" id="cancelEditProfileBtn">Cancelar</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Seção de Redes Sociais -->
+            <section class="profile-section social-media">
+                <h3 class="section-subtitle">Minhas Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="https://github.com/" target="_blank" class="social-icon github" aria-label="GitHub"><img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub"></a>
+                    <a href="https://linkedin.com/in/" target="_blank" class="social-icon linkedin" aria-label="LinkedIn"><img src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="LinkedIn"></a>
+                    <a href="https://instagram.com/" target="_blank" class="social-icon instagram" aria-label="Instagram"><img src="https://www.svgrepo.com/show/448226/instagram.svg" alt="Instagram"></a>
+                </div>
+                <button class="btn secondary-btn" id="addSocialBtn">Adicionar Rede Social</button>
+                <!-- Formulário para adicionar redes sociais (oculto por padrão) -->
+                <form class="add-social-form" id="addSocialForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="socialPlatform">Plataforma:</label>
+                        <select id="socialPlatform">
+                            <option value="github">GitHub</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="twitter">Twitter</option>
+                            <option value="website">Website</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="socialLink">Link:</label>
+                        <input type="url" id="socialLink" placeholder="https://...">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary-btn">Adicionar</button>
+                        <button type="button" class="btn secondary-btn" id="cancelAddSocialBtn">Cancelar</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Seção de Stories -->
+            <section class="profile-section user-stories">
+                <h3 class="section-subtitle">Meus Stories</h3>
+                <div class="stories-grid">
+                    <!-- Exemplo de story -->
+                    <div class="story-item">
+                        <img src="https://via.placeholder.com/150/6e00a8/FFFFFF?text=Story+1" alt="Story 1">
+                        <p>Codificando até tarde!</p>
+                    </div>
+                    <div class="story-item">
+                        <img src="https://via.placeholder.com/150/8a2be2/FFFFFF?text=Story+2" alt="Story 2">
+                        <p>Novo projeto no ar!</p>
+                    </div>
+                </div>
+                <button class="btn primary-btn" id="addStoryBtn">Adicionar Story</button>
+                <!-- Formulário para adicionar story (oculto por padrão) -->
+                <form class="add-story-form" id="addStoryForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="storyImage">Imagem do Story:</label>
+                        <input type="file" id="storyImage" accept="image/*">
+                        <img id="storyImagePreview" src="#" alt="Pré-visualização da imagem" style="display: none; max-width: 100px; margin-top: 10px;">
+                    </div>
+                    <div class="form-group">
+                        <label for="storyText">Texto do Story:</label>
+                        <textarea id="storyText" placeholder="O que você está fazendo?"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary-btn">Publicar Story</button>
+                        <button type="button" class="btn secondary-btn" id="cancelAddStoryBtn">Cancelar</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Seção de Postagens Pessoais -->
+            <section class="profile-section user-posts">
+                <h3 class="section-subtitle">Minhas Postagens</h3>
+                <button class="btn primary-btn" id="createPostBtn">Criar Nova Postagem</button>
+                <!-- Formulário para criar postagem (oculto por padrão) -->
+                <form class="create-post-form" id="createPostForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="postTitle">Título da Postagem:</label>
+                        <input type="text" id="postTitle" placeholder="Título da sua postagem">
+                    </div>
+                    <div class="form-group">
+                        <label for="postContent">Conteúdo:</label>
+                        <textarea id="postContent" placeholder="Escreva sua postagem aqui..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="postImage">Imagem (opcional):</label>
+                        <input type="file" id="postImage" accept="image/*">
+                        <img id="postImagePreview" src="#" alt="Pré-visualização da imagem" style="display: none; max-width: 200px; margin-top: 10px;">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary-btn">Publicar Postagem</button>
+                        <button type="button" class="btn secondary-btn" id="cancelCreatePostBtn">Cancelar</button>
+                    </div>
+                </form>
+                <div class="user-posts-list">
+                    <!-- Exemplo de postagem -->
+                    <article class="post">
+                        <h4 class="post-title">Minha primeira contribuição Open Source!</h4>
+                        <p class="post-content">Estou muito feliz em anunciar que meu primeiro pull request foi aceito em um projeto open source! Foi um desafio, mas valeu a pena. Contribuir para a comunidade é incrível!</p>
+                        <img src="https://via.placeholder.com/600x300/6e00a8/FFFFFF?text=Open+Source+Contribution" alt="Imagem da postagem" class="post-image">
+                        <div class="post-meta">
+                            <span>Publicado em: 05/06/2025</span>
+                            <button class="post-likes">❤️ 10</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Seção de Projetos -->
+            <section class="profile-section user-projects">
+                <h3 class="section-subtitle">Meus Projetos</h3>
+                <button class="btn primary-btn" id="addProjectBtn">Adicionar Novo Projeto</button>
+                <!-- Formulário para adicionar projeto (oculto por padrão) -->
+                <form class="add-project-form" id="addProjectForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="projectName">Nome do Projeto:</label>
+                        <input type="text" id="projectName" placeholder="Nome do seu projeto">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDescription">Descrição:</label>
+                        <textarea id="projectDescription" placeholder="Breve descrição do projeto..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectLink">Link do Projeto:</label>
+                        <input type="url" id="projectLink" placeholder="https://...">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary-btn">Salvar Projeto</button>
+                        <button type="button" class="btn secondary-btn" id="cancelAddProjectBtn">Cancelar</button>
+                    </div>
+                </form>
+                <div class="user-projects-list">
+                    <!-- Exemplo de projeto -->
+                    <div class="project-item">
+                        <h4>DevConnect - Plataforma de Mentoria</h4>
+                        <p>Plataforma web para conectar desenvolvedores juniores com mentores experientes.</p>
+                        <a href="#" target="_blank" class="project-link">Ver Projeto</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Sidebar direita (mantida para consistência, pode ser removida se não houver conteúdo específico para perfil) -->
+        <aside class="sidebar-right">
+            <div class="highlight-box">
+                <h3 class="highlight-title">✨ Destaque do Perfil</h3>
+                <div class="highlight-content">
+                    <div class="highlight-icon">💡</div>
+                    <div class="highlight-text">
+                        <h4>Dica: Mantenha seu perfil atualizado!</h4>
+                        <p>Um perfil completo e atualizado aumenta suas chances de ser notado pela comunidade e por recrutadores.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-copyright">
+                <p>&copy; 2025 DevComunity. Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#privacidade">Política de Privacidade</a>
+                <a href="#termos">Termos de Uso</a>
+                <a href="#contato">Contato</a>
+                <a href="#sobre">Sobre Nós</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript para funcionalidade do menu mobile e perfil -->
+    <script>
+        // Funcionalidade do menu hambúrguer (copiado do index.html)
+        const hamburgerMenu = document.getElementById("hamburgerMenu");
+        const mobileMenu = document.getElementById("mobileMenu");
+        
+        hamburgerMenu.addEventListener("click", function() {
+            hamburgerMenu.classList.toggle("active");
+            mobileMenu.classList.toggle("active");
+            if (mobileMenu.classList.contains("active")) {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "auto";
+            }
+        });
+
+        const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener("click", function() {
+                hamburgerMenu.classList.remove("active");
+                mobileMenu.classList.remove("active");
+                document.body.style.overflow = "auto";
+            });
+        });
+
+        document.addEventListener("click", function(event) {
+            if (!hamburgerMenu.contains(event.target) && !mobileMenu.contains(event.target)) {
+                hamburgerMenu.classList.remove("active");
+                mobileMenu.classList.remove("active");
+                document.body.style.overflow = "auto";
+            }
+        });
+
+        // Funcionalidade de Edição de Perfil
+        const editProfileBtn = document.getElementById("editProfileBtn");
+        const cancelEditProfileBtn = document.getElementById("cancelEditProfileBtn");
+        const profileEditForm = document.getElementById("profileEditForm");
+        const profileOverview = document.querySelector(".profile-overview .profile-info-display");
+
+        editProfileBtn.addEventListener("click", function() {
+            profileOverview.style.display = "none";
+            editProfileBtn.style.display = "none";
+            profileEditForm.style.display = "block";
+        });
+
+        cancelEditProfileBtn.addEventListener("click", function() {
+            profileOverview.style.display = "block";
+            editProfileBtn.style.display = "block";
+            profileEditForm.style.display = "none";
+        });
+
+        profileEditForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const newName = document.getElementById("profileName").value;
+            const newBio = document.getElementById("profileBio").value;
+            const newLocation = document.getElementById("profileLocation").value;
+
+            document.getElementById("profileNameDisplay").textContent = `@${newName.replace(/\s/g, ".").toLowerCase()}`;
+            document.getElementById("profileBioDisplay").textContent = newBio;
+            document.getElementById("profileLocationDisplay").textContent = `📍 ${newLocation}`;
+
+            profileOverview.style.display = "block";
+            editProfileBtn.style.display = "block";
+            profileEditForm.style.display = "none";
+            alert("Perfil atualizado com sucesso!");
+        });
+
+        // Upload e Preview de Imagem de Perfil
+        const profileImageUpload = document.getElementById("profileImageUpload");
+        const profileImagePreview = document.getElementById("profileImagePreview");
+
+        profileImageUpload.addEventListener("change", function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileImagePreview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Funcionalidade de Adicionar Rede Social
+        const addSocialBtn = document.getElementById("addSocialBtn");
+        const cancelAddSocialBtn = document.getElementById("cancelAddSocialBtn");
+        const addSocialForm = document.getElementById("addSocialForm");
+        const socialLinksContainer = document.querySelector(".social-links");
+
+        addSocialBtn.addEventListener("click", function() {
+            addSocialForm.style.display = "block";
+            addSocialBtn.style.display = "none";
+        });
+
+        cancelAddSocialBtn.addEventListener("click", function() {
+            addSocialForm.style.display = "none";
+            addSocialBtn.style.display = "block";
+        });
+
+        addSocialForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const platform = document.getElementById("socialPlatform").value;
+            const link = document.getElementById("socialLink").value;
+
+            if (link) {
+                const newSocialLink = document.createElement("a");
+                newSocialLink.href = link;
+                newSocialLink.target = "_blank";
+                newSocialLink.classList.add("social-icon", platform);
+                
+                let iconSrc = "";
+                switch(platform) {
+                    case "github": iconSrc = "https://www.svgrepo.com/show/512317/github-142.svg"; break;
+                    case "linkedin": iconSrc = "https://www.svgrepo.com/show/448234/linkedin.svg"; break;
+                    case "instagram": iconSrc = "https://www.svgrepo.com/show/448226/instagram.svg"; break;
+                    case "twitter": iconSrc = "https://www.svgrepo.com/show/448261/twitter-rounded.svg"; break;
+                    case "website": iconSrc = "https://www.svgrepo.com/show/448270/website.svg"; break;
+                }
+                newSocialLink.innerHTML = `<img src="${iconSrc}" alt="${platform}">`;
+                socialLinksContainer.appendChild(newSocialLink);
+
+                document.getElementById("socialLink").value = "";
+                addSocialForm.style.display = "none";
+                addSocialBtn.style.display = "block";
+            } else {
+                alert("Por favor, insira um link válido.");
+            }
+        });
+
+        // Funcionalidade de Adicionar Story
+        const addStoryBtn = document.getElementById("addStoryBtn");
+        const cancelAddStoryBtn = document.getElementById("cancelAddStoryBtn");
+        const addStoryForm = document.getElementById("addStoryForm");
+        const storyImage = document.getElementById("storyImage");
+        const storyImagePreview = document.getElementById("storyImagePreview");
+        const storiesGrid = document.querySelector(".stories-grid");
+
+        addStoryBtn.addEventListener("click", function() {
+            addStoryForm.style.display = "block";
+            addStoryBtn.style.display = "none";
+        });
+
+        cancelAddStoryBtn.addEventListener("click", function() {
+            addStoryForm.style.display = "none";
+            addStoryBtn.style.display = "block";
+            storyImagePreview.style.display = "none";
+            storyImage.value = "";
+            document.getElementById("storyText").value = "";
+        });
+
+        storyImage.addEventListener("change", function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    storyImagePreview.src = e.target.result;
+                    storyImagePreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                storyImagePreview.style.display = "none";
+            }
+        });
+
+        addStoryForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const storyText = document.getElementById("storyText").value;
+            const storyImgSrc = storyImagePreview.src;
+
+            if (storyText || storyImgSrc !== "#") {
+                const newStoryItem = document.createElement("div");
+                newStoryItem.classList.add("story-item");
+                newStoryItem.innerHTML = `
+                    ${storyImgSrc !== "#" ? `<img src="${storyImgSrc}" alt="Story">` : ``}
+                    <p>${storyText}</p>
+                `;
+                storiesGrid.appendChild(newStoryItem);
+
+                addStoryForm.style.display = "none";
+                addStoryBtn.style.display = "block";
+                storyImagePreview.style.display = "none";
+                storyImage.value = "";
+                document.getElementById("storyText").value = "";
+            } else {
+                alert("Por favor, adicione texto ou uma imagem para o story.");
+            }
+        });
+
+        // Funcionalidade de Criar Postagem
+        const createPostBtn = document.getElementById("createPostBtn");
+        const cancelCreatePostBtn = document.getElementById("cancelCreatePostBtn");
+        const createPostForm = document.getElementById("createPostForm");
+        const postImage = document.getElementById("postImage");
+        const postImagePreview = document.getElementById("postImagePreview");
+        const userPostsList = document.querySelector(".user-posts-list");
+
+        createPostBtn.addEventListener("click", function() {
+            createPostForm.style.display = "block";
+            createPostBtn.style.display = "none";
+        });
+
+        cancelCreatePostBtn.addEventListener("click", function() {
+            createPostForm.style.display = "none";
+            createPostBtn.style.display = "block";
+            postImagePreview.style.display = "none";
+            postImage.value = "";
+            document.getElementById("postTitle").value = "";
+            document.getElementById("postContent").value = "";
+        });
+
+        postImage.addEventListener("change", function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    postImagePreview.src = e.target.result;
+                    postImagePreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                postImagePreview.style.display = "none";
+            }
+        });
+
+        createPostForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const postTitle = document.getElementById("postTitle").value;
+            const postContent = document.getElementById("postContent").value;
+            const postImgSrc = postImagePreview.src;
+
+            if (postTitle && postContent) {
+                const newPost = document.createElement("article");
+                newPost.classList.add("post");
+                newPost.setAttribute("tabindex", "0");
+                newPost.setAttribute("role", "article");
+                newPost.innerHTML = `
+                    <h4 class="post-title">${postTitle}</h4>
+                    <p class="post-content">${postContent}</p>
+                    ${postImgSrc !== "#" ? `<img src="${postImgSrc}" alt="Imagem da postagem" class="post-image">` : ``}
+                    <div class="post-meta">
+                        <span>Publicado em: ${new Date().toLocaleDateString()}</span>
+                        <button class="post-likes">❤️ 0</button>
+                    </div>
+                `;
+                userPostsList.prepend(newPost); // Adiciona no início da lista
+
+                createPostForm.style.display = "none";
+                createPostBtn.style.display = "block";
+                postImagePreview.style.display = "none";
+                postImage.value = "";
+                document.getElementById("postTitle").value = "";
+                document.getElementById("postContent").value = "";
+
+                // Re-adiciona listener para o novo botão de like
+                newPost.querySelector(".post-likes").addEventListener("click", function(event) {
+                    event.stopPropagation();
+                    const currentLikes = parseInt(this.textContent.match(/\d+/)[0]);
+                    const newLikes = currentLikes + 1;
+                    this.innerHTML = `❤️ ${newLikes}`;
+                    this.style.transform = "scale(1.2)";
+                    this.style.background = "var(--primary-purple)";
+                    setTimeout(() => {
+                        this.style.transform = "";
+                        this.style.background = "";
+                    }, 200);
+                });
+
+            } else {
+                alert("Por favor, preencha o título e o conteúdo da postagem.");
+            }
+        });
+
+        // Funcionalidade de Adicionar Projeto
+        const addProjectBtn = document.getElementById("addProjectBtn");
+        const cancelAddProjectBtn = document.getElementById("cancelAddProjectBtn");
+        const addProjectForm = document.getElementById("addProjectForm");
+        const userProjectsList = document.querySelector(".user-projects-list");
+
+        addProjectBtn.addEventListener("click", function() {
+            addProjectForm.style.display = "block";
+            addProjectBtn.style.display = "none";
+        });
+
+        cancelAddProjectBtn.addEventListener("click", function() {
+            addProjectForm.style.display = "none";
+            addProjectBtn.style.display = "block";
+            document.getElementById("projectName").value = "";
+            document.getElementById("projectDescription").value = "";
+            document.getElementById("projectLink").value = "";
+        });
+
+        addProjectForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const projectName = document.getElementById("projectName").value;
+            const projectDescription = document.getElementById("projectDescription").value;
+            const projectLink = document.getElementById("projectLink").value;
+
+            if (projectName && projectDescription && projectLink) {
+                const newProjectItem = document.createElement("div");
+                newProjectItem.classList.add("project-item");
+                newProjectItem.innerHTML = `
+                    <h4>${projectName}</h4>
+                    <p>${projectDescription}</p>
+                    <a href="${projectLink}" target="_blank" class="project-link">Ver Projeto</a>
+                `;
+                userProjectsList.appendChild(newProjectItem);
+
+                addProjectForm.style.display = "none";
+                addProjectBtn.style.display = "block";
+                document.getElementById("projectName").value = "";
+                document.getElementById("projectDescription").value = "";
+                document.getElementById("projectLink").value = "";
+            } else {
+                alert("Por favor, preencha todos os campos do projeto.");
+            }
+        });
+
+        // Smooth scroll para links internos (copiado do index.html)
+        document.querySelectorAll("a[href^=\"#\"]").forEach(anchor => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute("href"));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            });
+        });
+
+        // Lazy loading para imagens (copiado do index.html)
+        const images = document.querySelectorAll("img");
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.classList.add("loaded");
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => {
+            imageObserver.observe(img);
+        });
+
+        // Adiciona classe para animações quando elementos entram na viewport (copiado do index.html)
+        const animatedElements = document.querySelectorAll(".profile-section, .highlight-box");
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.3 + "s";
+                    entry.target.classList.add("animate-in");
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animatedElements.forEach(element => {
+            animationObserver.observe(element);
+        });
+
+        // Melhora a performance removendo hover em dispositivos touch (copiado do index.html)
+        if ("ontouchstart" in window) {
+            document.body.classList.add("touch-device");
+        }
+
+        // Detecta tema do sistema (copiado do index.html)
+        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+            // Usuário prefere tema claro - pode adicionar lógica aqui se necessário
+        }
+
+        // Salva preferências do usuário no localStorage (copiado do index.html)
+        function saveUserPreference(key, value) {
+            try {
+                localStorage.setItem(`devCommunity_${key}`, JSON.stringify(value));
+            } catch (e) {
+                console.warn("Não foi possível salvar preferência:", e);
+            }
+        }
+
+        function getUserPreference(key, defaultValue) {
+            try {
+                const saved = localStorage.getItem(`devCommunity_${key}`);
+                return saved ? JSON.parse(saved) : defaultValue;
+            } catch (e) {
+                console.warn("Não foi possível carregar preferência:", e);
+                return defaultValue;
+            }
+        }
+
+        // Inicialização (copiado do index.html)
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.classList.add("js-loaded");
+            const savedTheme = getUserPreference("theme", "dark");
+            document.body.setAttribute("data-theme", savedTheme);
+            console.log("DevComunity - Perfil carregado com sucesso! 🚀");
+        });
+    </script>
+</body>
+</html>
+
